@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Thanksgiving">
+<meta name="theme-color" content="#9b1b3a">
+<title>Thanksgiving 2026 Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--card:#f6f3f0;--ink:#1d2424;--mute:#5d6767;--red:#9b1b3a;--sage:#3f6b5a;--gold:#e0a526;--line:#ddd6d0;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141918;--card:#1e2524;--ink:#eef0ee;--mute:#9fabaa;--red:#e5698a;--sage:#7fc3a9;--gold:#f0bd4a;--line:#2f3a38;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:760px;margin:auto;padding:0 16px 80px}
+h1,h2,h3{font-family:"Bricolage Grotesque",-apple-system,sans-serif;line-height:1.1;margin:0}
+header{padding:28px 0 12px}
+h1{font-size:clamp(40px,11vw,64px);font-weight:800;color:var(--red);letter-spacing:-.02em}
+.sub{color:var(--mute);margin:6px 0 0}
+.count{display:inline-block;margin-top:12px;background:var(--gold);color:#201600;padding:6px 14px;border-radius:99px;font-weight:700}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);display:flex;gap:6px;padding:10px 0;z-index:5;border-bottom:1px solid var(--line);overflow-x:auto}
+nav button{flex:1;white-space:nowrap;font:inherit;font-weight:700;padding:10px 14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px}
+nav button[aria-selected=true]{background:var(--red);border-color:var(--red);color:#fff}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+section{display:none;padding-top:20px}section.on{display:block}
+h2{font-size:30px;margin-bottom:12px}
+h3{font-size:22px}
+.day{margin:0 0 18px;border-left:4px solid var(--sage);padding-left:14px}
+.day b{font-family:"Bricolage Grotesque",sans-serif;font-size:19px;color:var(--sage)}
+ul.l{list-style:none;padding:0;margin:8px 0 0}
+.l li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line)}
+.l input{width:24px;height:24px;margin:1px 0 0;accent-color:var(--red);flex:none}
+.l label{flex:1}
+.l input:checked+label{text-decoration:line-through;color:var(--mute)}
+.t{font-weight:800;min-width:78px;color:var(--red);flex:none}
+.q{color:var(--mute);font-size:15px}
+.cat{margin:26px 0 0;font-size:22px;color:var(--sage)}
+.bar{display:flex;gap:8px;margin:12px 0}
+.bar button{font:inherit;padding:9px 14px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:600}
+details{background:var(--card);border-radius:14px;margin:10px 0;padding:0 16px}
+summary{padding:16px 0;cursor:pointer;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:21px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::after{content:"+";color:var(--red)}details[open] summary::after{content:"−"}
+details[open]{padding-bottom:16px}
+.meta{color:var(--mute);font-size:15px;margin:0 0 8px}
+h4{margin:16px 0 4px;font-size:16px;color:var(--sage)}
+ol{padding-left:22px;margin:6px 0}ol li{margin:0 0 10px}
+.note{background:var(--card);border-left:4px solid var(--gold);padding:10px 14px;border-radius:8px;margin:14px 0;font-size:15px}
+@media print{nav,.bar{display:none}section{display:block!important}}
+</style>
+</head>
+<body>
+<header>
+<h1>Thanksgiving 2026 Playbook</h1>
+<p class="sub">Brined bird, Anna Mae’s dressing, and everything else.</p>
+<span class="count" id="count"></span>
+</header>
+<nav role="tablist">
+<button role="tab" data-t="plan" aria-selected="true">Plan</button>
+<button role="tab" data-t="shop" aria-selected="false">Shopping</button>
+<button role="tab" data-t="rec" aria-selected="false">Recipes</button>
+</nav>
+
+<section id="plan" class="on">
+<h2>The meal</h2>
+<p id="menu"></p>
+<h2 style="margin-top:28px">Week of prep</h2>
+<div id="prep"></div>
+<h2 style="margin-top:28px">Game day: Thu 11/26</h2>
+<ul class="l" id="game"></ul>
+</section>
+
+<section id="shop">
+<h2>One shopping list</h2>
+<p class="meta">Combined from all recipes. Tap to check off; your checks stay on this phone.</p>
+<div class="bar"><button id="clear">Clear checks</button><button onclick="window.print()">Print</button></div>
+<div id="shoplist"></div>
+</section>
+
+<section id="rec">
+<h2>Recipes</h2>
+<div id="recipes"></div>
+</section>
+
+<script>
+var MENU=["Alton Brown’s Brined and Roasted Turkey","Turkey Gravy","Anna Mae’s Dressing","Deviled Eggs","Pioneer Woman’s Mashed Potatoes","Pioneer Woman’s Green Beans","Mac and Cheese","Cranberry Salad","Fruit Compote","Sweet Potato Casserole (store bought)","Pumpkin Cheesecake","Rhodes Rolls"];
+var PREP=[["Tue 11/17","Buy the bird"],["Thu 11/19","Make the grocery list"],["Sat 11/21","Grocery shop","Toast 2 loaves of white bread and tear apart (dressing)","Bake a tin of cornbread and crumble (dressing)"],["Tue 11/24","Make the brine, turkey goes in the brine","Turkey must be thawed first: start thawing 3 days before brining"],["Wed 11/25","Make deviled eggs","Make dressing","Make cranberry salad","Rolls into the fridge","Make the pumpkin cheesecake (needs 4+ hours to chill)"],["Thu 11/26","Show time!"]];
+var GAME=[["9:00 AM","Watch the Macy’s Thanksgiving Day Parade"],["10:00 AM","Rinse the turkey from the brine"],["10:30 AM","Preheat oven to 500"],["11:00 AM","Turkey in the oven"],["12:00 PM","Start the gravy"],["1:00 PM","Make mac and cheese"],["1:30 PM","Pull rolls from the fridge"],["2:00 PM","Cook and mash potatoes"],["2:00 PM","Start the green beans"],["2:30 PM","Sweet potato casserole in the oven at 350"],["3:00 PM","Fruit compote and dressing in the oven"],["3:30 PM","Mashed potatoes and mac and cheese in the oven"],["3:40 PM","Rolls in the oven"],["4:00 PM","EAT!"]];
+var SHOP=[
+["Meat and eggs",["1 turkey, 14–16 lb (buy 11/17)","Neck and giblets (come with the turkey, for gravy)","1 dozen eggs for deviled eggs","17 eggs for dressing, cheesecake, and mac (12 + 3 + 1 + 1)"]],
+["Dairy",["6 sticks butter (dressing 1, cheesecake 1, gravy ½, mac ½, potatoes 1½, compote 1; plus some for dotting the potatoes)","3 packages cream cheese, 8 oz (cheesecake)","1½ packages cream cheese, 8 oz (potatoes), so 5 packages total","¼ cup sour cream (cheesecake)","½ cup half-and-half","½ cup cream","2½ cups whole milk","1 lb cheese: cheddar, jack and/or fontina, grated, plus extra for topping"]],
+["Produce",["1 lb fresh cranberries","1 navel orange","1 red apple","3 Granny Smith apples","7 onions: 5 large (dressing), 1 medium (gravy), ½ (turkey cavity), 1 large (green beans). Buy 8.","1 bundle celery hearts (dressing)","1 cup chopped celery (cranberry salad), so buy 2 bundles","5 lb Yukon gold or russet potatoes","1 lb green beans","1 red bell pepper (½ cup chopped)","Garlic (2 cloves)","Fresh rosemary (4 sprigs for turkey, plus a couple for gravy)","Fresh sage (6 leaves)","Fresh thyme, parsley, or more rosemary (couple sprigs for gravy)"]],
+["Canned and boxed",["6 cans chicken broth (dressing)","8 cups chicken broth (gravy), about 2 cartons, low sodium","1 cup chicken broth (green beans)","1 gallon vegetable stock (brine)","1 can (15 oz) pureed pumpkin","1 can (20 oz) crushed pineapple","1 can whole cranberry sauce","1 sweet potato casserole, store bought","1 box corn muffin mix or cornbread mix (for the tin of cornbread)","2 loaves white bread","Rhodes rolls"]],
+["Baking aisle",["Graham cracker crumbs, 1¾ cups","Sugar, about 3½ cups (cheesecake 1½, cranberry salad 1½, compote ⅓)","Light brown sugar, about 1 cup (brine ½, cheesecake 3 Tbsp, compote ⅓)","All-purpose flour, about 1¼ cups (gravy ½, mac ¼, cheesecake 2 Tbsp, compote ⅓)","Quick oats, 1 cup","Vanilla extract","Canola oil","Chopped pecans, 1 cup","2 boxes cherry jello, 1 box orange jello"]],
+["Spices",["Kosher salt (1 cup for brine, plus extra)","Black peppercorns, 1 Tbsp","Allspice berries, 1½ tsp","Candied ginger, 1½ tsp chopped","Cinnamon stick (1) and ground cinnamon","Ground nutmeg and ground cloves","Dried sage, 3 Tbsp","Poultry seasoning, 3 tsp","Dry mustard, 2 tsp heaping","Seasoned salt","Cayenne pepper","Bay leaf","Worcestershire sauce","Black pepper","Table salt"]],
+["Other",["Bacon grease or butter (2 Tbsp, green beans)","Deviled egg fixings (mayo, mustard, paprika)","5-gallon bucket and ice (brine: heavily iced water, 1 gallon)","Foil (turkey triangle) and plastic wrap","Probe thermometer","Half sheet pan and roasting rack","9-inch springform pan"]]];
+var REC=[
+{n:"Turkey brine",m:"Start 3 days before: thaw the turkey",i:["1 cup kosher salt","½ cup light brown sugar","1 gallon vegetable stock","1 tablespoon black peppercorns","1½ teaspoons allspice berries","1½ teaspoons chopped candied ginger","1 gallon heavily iced water"],s:["Combine stock, salt, brown sugar, peppercorns, allspice, and ginger in a large stockpot over medium-high heat. Stir occasionally to dissolve and bring to a boil.","Remove from heat, cool to room temperature, and refrigerate.","Two nights before Thanksgiving, combine the brine, water, and ice in the 5-gallon bucket.","Place the thawed turkey (innards removed) breast side down in the brine. Weigh it down if needed so it is fully submerged. Cover and refrigerate or keep in a cool area. Turn the bird once, halfway through."]},
+{n:"Roast turkey",m:"14–16 lb bird: 2 to 2½ hours total",i:["1 red apple, sliced","½ onion, sliced","1 cinnamon stick","1 cup water","4 sprigs rosemary","6 leaves sage","Canola oil"],s:["Preheat the oven to 500°F. Remove the bird from the brine, rinse inside and out with cold water, and discard the brine.","Place the bird on a roasting rack inside a half sheet pan and pat dry.","Microwave the apple, onion, cinnamon stick, and 1 cup water on high for 5 minutes. Put the steeped aromatics in the cavity with the rosemary and sage.","Tuck the wings under and coat the skin liberally with canola oil.","Roast on the lowest oven rack at 500°F for 30 minutes. Cover with the foil turkey triangle, insert a probe thermometer in the thickest part of the breast, and reduce the oven to 350°F. Set the alarm to 161°F.","Rest loosely covered with foil or a large bowl for 15 minutes before carving."]},
+{n:"Turkey gravy",m:"Start at noon; simmers while the turkey roasts",i:["4 tablespoons unsalted butter (½ stick)","Neck and giblets from the turkey (discard the liver)","1 medium onion, sliced","8 cups chicken broth","Couple sprigs fresh herbs (thyme, parsley, rosemary, or sage)","1 bay leaf","Turkey pan drippings","½ cup all-purpose flour","Dash Worcestershire sauce","Salt and freshly ground black pepper"],s:["Melt the butter in a saucepan over medium-low heat. Add the neck, giblets, and onion; cook, stirring occasionally, until browned, about 15 minutes.","Add the broth, herbs, and bay leaf. Cover and simmer over medium-low for about 2 hours. Discard the giblets or chop them to add to the gravy.","Pour the pan drippings into a measuring cup and let the fat separate (the freezer helps). Ladle off ½ cup of fat into a saucepan.","Heat the fat over medium. Scatter the flour on top and stir constantly until slightly browned and toasty, about 4 minutes.","Switch to a whisk. Gradually ladle in the hot broth, whisking constantly. Bring to a boil, then simmer gently.","Skim excess fat from the remaining drippings and add the pan juices. Simmer, whisking occasionally, until thickened, about 10 minutes.","Add chopped giblets if desired. Season with Worcestershire, salt, and pepper."]},
+{n:"Anna Mae’s dressing",m:"Prep bread and cornbread 2 days ahead; bake 3:00 PM",i:["2 loaves white bread","1 bundle celery hearts","5 large onions","1 stick butter","6 cans chicken broth","12 eggs","3 tsp salt","3 Tbsp dried sage","3 tsp poultry seasoning","1 tin of cornbread"],s:["Two days ahead: toast both loaves and tear apart. Bake a tin of cornbread and crumble.","Preheat the oven to 400°F.","Chop the celery hearts and onions. Sauté in the stick of butter, add chicken broth, and keep cooking.","Season the crumbled bread well with salt, pepper, sage, and poultry seasoning.","Whisk the 12 eggs and pour half into the bread. Mix well.","Add the sautéed veggies to the bread mix. Keep adding broth to the veggies to warm them, then add the warm broth to the bread. Season as you go. You should use about 6 cans. Mix until you get the right consistency.","Start the oven at 400°F, bring it down to 350°F, and bake 45 minutes to 1 hour."]},
+{n:"Macaroni and cheese",m:"Make at 1:00 PM; bake 3:30 PM at 350°F",i:["4 cups dried macaroni","1 whole egg","¼ cup (½ stick) salted butter","¼ cup all-purpose flour","2½ cups whole milk","2 tsp (heaping) dry mustard","1 lb cheese (cheddar, jack, and/or fontina), grated","½ tsp salt, more to taste","½ tsp seasoned salt, more to taste","½ tsp ground black pepper","¼ tsp cayenne pepper"],s:["Cook the macaroni until very firm: too firm to eat right out of the pot. Drain.","Beat the egg in a small bowl.","In a large pot, melt the butter and sprinkle in the flour. Whisk over medium-low heat for 5 minutes, constantly. Don’t let it burn.","Pour in the milk, add the mustard, and whisk until smooth. Cook 5 minutes until very thick. Reduce heat to low.","Slowly pour ¼ cup of the sauce into the beaten egg, whisking constantly. Whisk smooth, then pour the egg mixture back into the sauce, stirring until smooth.","Add the cheese and stir to melt. Add the salt, seasoned salt, and pepper. Taste and add more. DO NOT UNDERSALT.","Stir in the macaroni. Serve right away (very creamy), or pour into a buttered baking dish, top with extra cheese, and bake at 350°F for 20 to 25 minutes, until bubbly and golden."]},
+{n:"Creamy mashed potatoes",m:"Cook at 2:00 PM; oven at 3:30 PM, 350°F",i:["5 pounds Yukon gold or russet potatoes","1½ sticks softened butter, plus more for baking","1½ (8-ounce) packages cream cheese, softened","½ cup half-and-half","½ cup cream","Salt and freshly ground black pepper","Milk, if needed, for thinning"],s:["Peel the potatoes, rinse, and chop into fourths. Cover with water in a large pot, bring to a boil, and cook until fork tender, 20 to 25 minutes.","Drain and return to the pan. On low heat, mash with a potato masher for about 5 minutes. More steam released is better. Turn off the burner.","Add the butter, cream cheese, half-and-half, cream, and seasonings. Stir to combine; thin with milk if needed. Check the seasoning.","Pour into a large casserole pan and dot the surface with butter. Cover with foil and bake at 350°F for 15 minutes. Remove the foil and bake 10 more minutes. Serve immediately."]},
+{n:"Ree’s green beans",m:"Start at 2:00 PM; 20 to 30 minutes",i:["1 pound green beans","2 tablespoons bacon grease (or butter)","2 cloves garlic, minced","1 large onion, chopped","1 cup chicken broth, plus more if needed","½ cup chopped red bell pepper","½ to 1 teaspoon kosher salt (¼ to ½ teaspoon table salt)","Ground black pepper"],s:["Melt the bacon grease in a skillet over medium-low heat. Add the garlic and onion and cook for a minute.","Add the green beans and cook until bright green, about a minute.","Add the broth, red pepper, salt, and pepper. Turn to low and cover, leaving the lid cracked so steam escapes.","Cook until the liquid evaporates and the beans are fairly soft but still a bit crisp, 20 to 30 minutes. Add more broth if needed, but let it cook away so the onions and peppers start to caramelize."]},
+{n:"Cranberry salad",m:"Make 11/25 and refrigerate",i:["1 pound fresh cranberries","1 can (20 oz) crushed pineapple, well drained","2 boxes cherry jello","1 box orange jello","1½ cups sugar","1 cup chopped pecans","1 cup chopped celery","1 navel orange and its zest","1 tsp salt"],s:["Chop the cranberries. Add ½ cup sugar and stir.","Boil 2 cups water. In a large bowl, mix the jello, 1 cup sugar, and 1 tsp salt. Add the boiling water and stir well.","Add the cranberries, pineapple, pecans, celery, chopped orange, and zest. Stir everything together.","Pour into a pan and refrigerate."]},
+{n:"Fruit compote",m:"Oven at 3:00 PM, 350°F, 45 minutes",i:["3 Granny Smith apples","1 can whole cranberry sauce","1 cup quick oats","⅓ cup brown sugar","⅓ cup white sugar","⅓ cup all-purpose flour","1 stick butter"],s:["Stir the apples and cranberry sauce together and pour into a large casserole.","Mix the oats, sugars, and flour until crumbly. Gradually work in the butter.","Spread the topping evenly over the apple-cranberry mix.","Bake at 350°F for 45 minutes."]},
+{n:"Pumpkin cheesecake",m:"Make 11/25; bakes 1 hour, then chill 4+ hours",i:["Crust: 1¾ cups graham cracker crumbs","Crust: 3 tablespoons light brown sugar","Crust: ½ teaspoon ground cinnamon","Crust: 1 stick melted butter","Filling: 3 (8 oz) packages cream cheese, room temp","Filling: 1 (15 oz) can pureed pumpkin","Filling: 3 eggs plus 1 yolk","Filling: ¼ cup sour cream","Filling: 1½ cups sugar","Filling: ½ tsp ground cinnamon","Filling: ⅛ tsp ground nutmeg","Filling: ⅛ tsp ground cloves","Filling: 2 tablespoons all-purpose flour","Filling: 1 teaspoon vanilla extract"],s:["Preheat the oven to 350°F.","Crust: combine crumbs, sugar, and cinnamon in a medium bowl. Add the melted butter. Press flat into a 9-inch springform pan and set aside.","Filling: beat the cream cheese until smooth. Add the pumpkin, eggs, yolk, sour cream, sugar, and spices. Add the flour and vanilla and beat until well combined.","Pour into the crust and spread evenly. Bake 1 hour.","Remove and let sit 15 minutes. Cover with plastic wrap and refrigerate at least 4 hours."]}
+];
+var $=function(s){return document.querySelector(s)};
+var store={get:function(k){try{return JSON.parse(localStorage.getItem(k)||"{}")}catch(e){return {}}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+$("#menu").innerHTML=MENU.map(function(x){return "• "+x}).join("<br>");
+$("#prep").innerHTML=PREP.map(function(d){return '<div class="day"><b>'+d[0]+'</b><ul class="l" style="margin-top:2px">'+d.slice(1).map(function(t){return "<li><span>"+t+"</span></li>"}).join("")+"</ul></div>"}).join("");
+function checks(ul,key,items,fmt){var st=store.get(key);ul.innerHTML=items.map(function(it,i){var id=key+i;return '<li><input type="checkbox" id="'+id+'" data-k="'+id+'"'+(st[id]?" checked":"")+'><label for="'+id+'">'+fmt(it)+"</label></li>"}).join("")}
+checks($("#game"),"g",GAME,function(g){return '<span class="t">'+g[0]+"</span> "+g[1]});
+var sh=$("#shoplist");sh.innerHTML="";
+SHOP.forEach(function(c,ci){sh.insertAdjacentHTML("beforeend",'<h3 class="cat">'+c[0]+'</h3><ul class="l" id="s'+ci+'"></ul>');checks($("#s"+ci),"s"+ci+"_",c[1],function(x){return x})});
+$("#recipes").innerHTML=REC.map(function(r){return "<details><summary>"+r.n+"</summary><p class=\"meta\">"+r.m+"</p><h4>Ingredients</h4><ul class=\"l\">"+r.i.map(function(x){return "<li><span>"+x+"</span></li>"}).join("")+"</ul><h4>Steps</h4><ol>"+r.s.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol></details>"}).join("")+'<p class="note">Also on the menu with no recipe: deviled eggs, store-bought sweet potato casserole, and Rhodes rolls (into the oven at 3:40 PM).</p>';
+document.addEventListener("change",function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k)return;var g=k.charAt(0)==="g"&&/^g\d+$/.test(k)?"g":k.split("_")[0];var o=store.get("chk_"+g);o[k]=e.target.checked;store.set("chk_"+g,o)});
+</script>
+<script>
+// persistence: rebuild lists using a single checks store
+(function(){var all=store.get("all");document.addEventListener("change",function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k)return;all[k]=e.target.checked;store.set("all",all)});
+document.querySelectorAll("input[data-k]").forEach(function(i){i.checked=!!all[i.dataset.k]});
+$("#clear").onclick=function(){all={};store.set("all",all);document.querySelectorAll("#shoplist input").forEach(function(i){i.checked=false})};
+document.querySelectorAll("nav button").forEach(function(b){b.onclick=function(){document.querySelectorAll("nav button").forEach(function(x){x.setAttribute("aria-selected",x===b)});document.querySelectorAll("section").forEach(function(s){s.classList.toggle("on",s.id===b.dataset.t)});window.scrollTo(0,0)}});
+var d=Math.ceil((new Date(2026,10,26)-new Date(new Date().setHours(0,0,0,0)))/864e5);
+$("#count").textContent=d>0?d+(d===1?" day":" days")+" to Thanksgiving":d===0?"It’s Thanksgiving. Let’s go!":"Thanksgiving 2026 is in the books";
+var ld={"@context":"https://schema.org","@graph":REC.map(function(r){return{"@type":"Recipe","name":r.n,"recipeIngredient":r.i,"recipeInstructions":r.s.map(function(t){return{"@type":"HowToStep","text":t}})}})};
+var s=document.createElement("script");s.type="application/ld+json";s.textContent=JSON.stringify(ld);document.head.appendChild(s)})();
+</script>
+</body>
+</html>
