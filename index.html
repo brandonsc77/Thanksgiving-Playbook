@@ -49,6 +49,7 @@ h4{margin:16px 0 4px;font-size:16px;color:var(--sage)}
 ol{padding-left:22px;margin:6px 0}ol li{margin:0 0 10px}
 .note{background:var(--card);border-left:4px solid var(--gold);padding:10px 14px;border-radius:8px;margin:14px 0;font-size:15px}
 @media print{nav,.bar{display:none}section{display:block!important}}
+a{color:var(--red);font-weight:600}
 </style>
 </head>
 <body>
@@ -108,6 +109,7 @@ var REC=[
 {n:"Fruit compote",m:"Oven at 3:00 PM, 350°F, 45 minutes",i:["3 Granny Smith apples","1 can whole cranberry sauce","1 cup quick oats","⅓ cup brown sugar","⅓ cup white sugar","⅓ cup all-purpose flour","1 stick butter"],s:["Stir the apples and cranberry sauce together and pour into a large casserole.","Mix the oats, sugars, and flour until crumbly. Gradually work in the butter.","Spread the topping evenly over the apple-cranberry mix.","Bake at 350°F for 45 minutes."]},
 {n:"Pumpkin cheesecake",m:"Make 11/25; bakes 1 hour, then chill 4+ hours",i:["Crust: 1¾ cups graham cracker crumbs","Crust: 3 tablespoons light brown sugar","Crust: ½ teaspoon ground cinnamon","Crust: 1 stick melted butter","Filling: 3 (8 oz) packages cream cheese, room temp","Filling: 1 (15 oz) can pureed pumpkin","Filling: 3 eggs plus 1 yolk","Filling: ¼ cup sour cream","Filling: 1½ cups sugar","Filling: ½ tsp ground cinnamon","Filling: ⅛ tsp ground nutmeg","Filling: ⅛ tsp ground cloves","Filling: 2 tablespoons all-purpose flour","Filling: 1 teaspoon vanilla extract"],s:["Preheat the oven to 350°F.","Crust: combine crumbs, sugar, and cinnamon in a medium bowl. Add the melted butter. Press flat into a 9-inch springform pan and set aside.","Filling: beat the cream cheese until smooth. Add the pumpkin, eggs, yolk, sour cream, sugar, and spices. Add the flour and vanilla and beat until well combined.","Pour into the crust and spread evenly. Bake 1 hour.","Remove and let sit 15 minutes. Cover with plastic wrap and refrigerate at least 4 hours."]}
 ];
+function slug(n){return n.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
 var $=function(s){return document.querySelector(s)};
 var store={get:function(k){try{return JSON.parse(localStorage.getItem(k)||"{}")}catch(e){return {}}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 $("#menu").innerHTML=MENU.map(function(x){return "• "+x}).join("<br>");
@@ -116,7 +118,7 @@ function checks(ul,key,items,fmt){var st=store.get(key);ul.innerHTML=items.map(f
 checks($("#game"),"g",GAME,function(g){return '<span class="t">'+g[0]+"</span> "+g[1]});
 var sh=$("#shoplist");sh.innerHTML="";
 SHOP.forEach(function(c,ci){sh.insertAdjacentHTML("beforeend",'<h3 class="cat">'+c[0]+'</h3><ul class="l" id="s'+ci+'"></ul>');checks($("#s"+ci),"s"+ci+"_",c[1],function(x){return x})});
-$("#recipes").innerHTML=REC.map(function(r){return "<details><summary>"+r.n+"</summary><p class=\"meta\">"+r.m+"</p><h4>Ingredients</h4><ul class=\"l\">"+r.i.map(function(x){return "<li><span>"+x+"</span></li>"}).join("")+"</ul><h4>Steps</h4><ol>"+r.s.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol></details>"}).join("")+'<p class="note">Also on the menu with no recipe: deviled eggs, store-bought sweet potato casserole, and Rhodes rolls (into the oven at 3:40 PM).</p>';
+$("#recipes").innerHTML=REC.map(function(r){return "<details><summary>"+r.n+"</summary><p class=\"meta\">"+r.m+"</p><p><a href=\"recipes/"+slug(r.n)+".html\">Open as its own recipe page</a></p><h4>Ingredients</h4><ul class=\"l\">"+r.i.map(function(x){return "<li><span>"+x+"</span></li>"}).join("")+"</ul><h4>Steps</h4><ol>"+r.s.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol></details>"}).join("")+'<p class="note">Also on the menu with no recipe: deviled eggs, store-bought sweet potato casserole, and Rhodes rolls (into the oven at 3:40 PM).</p>';
 document.addEventListener("change",function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k)return;var g=k.charAt(0)==="g"&&/^g\d+$/.test(k)?"g":k.split("_")[0];var o=store.get("chk_"+g);o[k]=e.target.checked;store.set("chk_"+g,o)});
 </script>
 <script>
@@ -127,8 +129,7 @@ $("#clear").onclick=function(){all={};store.set("all",all);document.querySelecto
 document.querySelectorAll("nav button").forEach(function(b){b.onclick=function(){document.querySelectorAll("nav button").forEach(function(x){x.setAttribute("aria-selected",x===b)});document.querySelectorAll("section").forEach(function(s){s.classList.toggle("on",s.id===b.dataset.t)});window.scrollTo(0,0)}});
 var d=Math.ceil((new Date(2026,10,26)-new Date(new Date().setHours(0,0,0,0)))/864e5);
 $("#count").textContent=d>0?d+(d===1?" day":" days")+" to Thanksgiving":d===0?"It’s Thanksgiving. Let’s go!":"Thanksgiving 2026 is in the books";
-var ld={"@context":"https://schema.org","@graph":REC.map(function(r){return{"@type":"Recipe","name":r.n,"recipeIngredient":r.i,"recipeInstructions":r.s.map(function(t){return{"@type":"HowToStep","text":t}})}})};
-var s=document.createElement("script");s.type="application/ld+json";s.textContent=JSON.stringify(ld);document.head.appendChild(s)})();
+})();
 </script>
 </body>
 </html>
