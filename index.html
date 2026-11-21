@@ -5,71 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Thanksgiving">
-<meta name="theme-color" content="#9b1b3a">
+<meta name="theme-color" content="#9b2335">
 <title>Thanksgiving 2026 Playbook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff;--card:#f6f3f0;--ink:#1d2424;--mute:#5d6767;--red:#9b1b3a;--sage:#3f6b5a;--gold:#e0a526;--line:#ddd6d0;color-scheme:light}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141918;--card:#1e2524;--ink:#eef0ee;--mute:#9fabaa;--red:#e5698a;--sage:#7fc3a9;--gold:#f0bd4a;--line:#2f3a38;color-scheme:dark}}
+:root{--bg:#fbf3e4;--card:#fff9ee;--ink:#3b2417;--mute:#7a6455;--red:#9b2335;--pump:#d9702a;--gold:#e6a82e;--green:#5b6b2f;--line:#e6d3b8;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#20140e;--card:#2d1d14;--ink:#f6e9d8;--mute:#c2a78f;--red:#e8806f;--pump:#f0904a;--gold:#f2c35a;--green:#a9bd6a;--line:#4a3425;color-scheme:dark}}
 *{box-sizing:border-box}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:760px;margin:auto;padding:0 16px 80px}
-h1,h2,h3{font-family:"Bricolage Grotesque",-apple-system,sans-serif;line-height:1.1;margin:0}
-header{padding:28px 0 12px}
-h1{font-size:clamp(40px,11vw,64px);font-weight:800;color:var(--red);letter-spacing:-.02em}
-.sub{color:var(--mute);margin:6px 0 0}
-.count{display:inline-block;margin-top:12px;background:var(--gold);color:#201600;padding:6px 14px;border-radius:99px;font-weight:700}
-nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);display:flex;gap:6px;padding:10px 0;z-index:5;border-bottom:1px solid var(--line);overflow-x:auto}
-nav button{flex:1;white-space:nowrap;font:inherit;font-weight:700;padding:10px 14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px}
-nav button[aria-selected=true]{background:var(--red);border-color:var(--red);color:#fff}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
-section{display:none;padding-top:20px}section.on{display:block}
-h2{font-size:30px;margin-bottom:12px}
+body{margin:0 auto;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:760px;padding:0 16px 80px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--red);z-index:10}
+h1,h2,h3,summary,.day b{font-family:Fraunces,Georgia,"Times New Roman",serif}
+h1,h2,h3{line-height:1.1;margin:0}
+header{margin:0 -16px;padding:30px 22px 26px;text-align:center;color:#fff;background:radial-gradient(circle at 15% 20%,rgba(230,168,46,.45),transparent 45%),radial-gradient(circle at 90% 90%,rgba(91,107,47,.5),transparent 50%),linear-gradient(160deg,#7d1a2b,#b8452a 70%,#d9702a);border-radius:0 0 34px 34px;box-shadow:0 6px 18px rgba(80,20,10,.25)}
+.leaves{font-size:28px;letter-spacing:8px}
+h1{font-size:clamp(38px,10.5vw,60px);font-weight:800;letter-spacing:-.02em;margin:6px 0;text-shadow:0 2px 0 rgba(0,0,0,.2)}
+.sub{margin:4px 0 0;opacity:.92;font-style:italic}
+.count{display:inline-block;margin-top:14px;background:var(--gold);color:#3a2300;padding:7px 16px;border-radius:99px;font-weight:800;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);display:flex;gap:8px;padding:12px 0;z-index:5;overflow-x:auto}
+nav button{flex:1;white-space:nowrap;font:inherit;font-weight:700;padding:10px 12px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px}
+nav button[aria-selected=true]{background:var(--pump);border-color:var(--pump);color:#fff;box-shadow:0 3px 0 rgba(120,50,10,.35)}
+section{display:none;padding-top:12px}section.on{display:block}
+h2{font-size:30px;margin:0 0 12px;color:var(--red)}
+h2::after{content:"";display:block;width:56px;height:4px;border-radius:4px;background:var(--gold);margin-top:8px}
 h3{font-size:22px}
-.day{margin:0 0 18px;border-left:4px solid var(--sage);padding-left:14px}
-.day b{font-family:"Bricolage Grotesque",sans-serif;font-size:19px;color:var(--sage)}
-ul.l{list-style:none;padding:0;margin:8px 0 0}
+#menu{background:var(--card);border:2px dashed var(--gold);border-radius:18px;padding:14px 18px;line-height:1.9}
+.day{margin:0 0 14px;background:var(--card);border-radius:16px;padding:12px 16px;border-left:6px solid var(--pump)}
+.day b{font-size:20px;color:var(--pump)}
+ul.l{list-style:none;padding:0;margin:6px 0 0}
 .l li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line)}
-.l input{width:24px;height:24px;margin:1px 0 0;accent-color:var(--red);flex:none}
+.l li:last-child{border-bottom:0}
+.l input{width:24px;height:24px;margin:1px 0 0;accent-color:var(--pump);flex:none}
 .l label{flex:1}
 .l input:checked+label{text-decoration:line-through;color:var(--mute)}
-.t{font-weight:800;min-width:78px;color:var(--red);flex:none}
-.q{color:var(--mute);font-size:15px}
-.cat{margin:26px 0 0;font-size:22px;color:var(--sage)}
+#game{background:var(--card);border-radius:16px;padding:4px 16px}
+.t{font-weight:800;min-width:82px;color:var(--red);flex:none}
+.cat{margin:26px 0 0;font-size:22px;color:var(--green);padding:6px 14px;background:var(--card);border-radius:12px;border-left:6px solid var(--green)}
 .bar{display:flex;gap:8px;margin:12px 0}
-.bar button{font:inherit;padding:9px 14px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:600}
-details{background:var(--card);border-radius:14px;margin:10px 0;padding:0 16px}
-summary{padding:16px 0;cursor:pointer;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:21px;list-style:none;display:flex;justify-content:space-between;gap:10px}
-summary::after{content:"+";color:var(--red)}details[open] summary::after{content:"−"}
+.bar button{font:inherit;padding:9px 16px;border-radius:99px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:700}
+details{background:var(--card);border-radius:18px;margin:12px 0;padding:0 18px;border:1px solid var(--line);border-left:6px solid var(--pump)}
+details:nth-of-type(3n+2){border-left-color:var(--red)}details:nth-of-type(3n){border-left-color:var(--green)}
+summary{padding:16px 0;cursor:pointer;font-weight:800;font-size:21px;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+summary::after{content:"+";color:var(--pump);font-size:28px;line-height:1}details[open] summary::after{content:"−"}
 details[open]{padding-bottom:16px}
-.meta{color:var(--mute);font-size:15px;margin:0 0 8px}
-h4{margin:16px 0 4px;font-size:16px;color:var(--sage)}
-ol{padding-left:22px;margin:6px 0}ol li{margin:0 0 10px}
-.note{background:var(--card);border-left:4px solid var(--gold);padding:10px 14px;border-radius:8px;margin:14px 0;font-size:15px}
-@media print{nav,.bar{display:none}section{display:block!important}}
-a{color:var(--red);font-weight:600}
+.meta{color:var(--mute);font-size:15px;margin:0 0 8px;font-style:italic}
+h4{margin:16px 0 4px;font-size:16px;color:var(--green);text-transform:uppercase;letter-spacing:.08em}
+ol{padding-left:22px;margin:6px 0}ol li{margin:0 0 10px}ol li::marker{color:var(--pump);font-weight:800}
+.note{background:var(--card);border-left:6px solid var(--gold);padding:12px 16px;border-radius:12px;margin:16px 0;font-size:15px}
+a{color:var(--red);font-weight:700}
+footer{text-align:center;margin-top:40px;color:var(--mute);font-size:15px}
+@media print{nav,.bar,header .leaves{display:none}section{display:block!important}}
 </style>
 </head>
 <body>
 <header>
+<div class="leaves">🍂🍁🦃🍁🍂</div>
 <h1>Thanksgiving 2026 Playbook</h1>
-<p class="sub">Brined bird, Anna Mae’s dressing, and everything else.</p>
+<p class="sub">Brined bird, Anna Mae’s dressing, and all the fixings.</p>
 <span class="count" id="count"></span>
 </header>
 <nav role="tablist">
-<button role="tab" data-t="plan" aria-selected="true">Plan</button>
-<button role="tab" data-t="shop" aria-selected="false">Shopping</button>
-<button role="tab" data-t="rec" aria-selected="false">Recipes</button>
+<button role="tab" data-t="plan" aria-selected="true">🦃 Plan</button>
+<button role="tab" data-t="shop" aria-selected="false">🛒 Shopping</button>
+<button role="tab" data-t="rec" aria-selected="false">🥧 Recipes</button>
 </nav>
 
 <section id="plan" class="on">
-<h2>The meal</h2>
+<h2>🍽️ The meal</h2>
 <p id="menu"></p>
-<h2 style="margin-top:28px">Week of prep</h2>
+<h2 style="margin-top:28px">📅 Week of prep</h2>
 <div id="prep"></div>
-<h2 style="margin-top:28px">Game day: Thu 11/26</h2>
+<h2 style="margin-top:28px">🔥 Game day: Thu 11/26</h2>
 <ul class="l" id="game"></ul>
 </section>
 
@@ -110,6 +118,7 @@ var REC=[
 {n:"Pumpkin cheesecake",m:"Make 11/25; bakes 1 hour, then chill 4+ hours",i:["Crust: 1¾ cups graham cracker crumbs","Crust: 3 tablespoons light brown sugar","Crust: ½ teaspoon ground cinnamon","Crust: 1 stick melted butter","Filling: 3 (8 oz) packages cream cheese, room temp","Filling: 1 (15 oz) can pureed pumpkin","Filling: 3 eggs plus 1 yolk","Filling: ¼ cup sour cream","Filling: 1½ cups sugar","Filling: ½ tsp ground cinnamon","Filling: ⅛ tsp ground nutmeg","Filling: ⅛ tsp ground cloves","Filling: 2 tablespoons all-purpose flour","Filling: 1 teaspoon vanilla extract"],s:["Preheat the oven to 350°F.","Crust: combine crumbs, sugar, and cinnamon in a medium bowl. Add the melted butter. Press flat into a 9-inch springform pan and set aside.","Filling: beat the cream cheese until smooth. Add the pumpkin, eggs, yolk, sour cream, sugar, and spices. Add the flour and vanilla and beat until well combined.","Pour into the crust and spread evenly. Bake 1 hour.","Remove and let sit 15 minutes. Cover with plastic wrap and refrigerate at least 4 hours."]}
 ];
 function slug(n){return n.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+var IC=["🧂","🦃","🍵","🍞","🧀","🥔","🫘","🍒","🍎","🥧"];
 var $=function(s){return document.querySelector(s)};
 var store={get:function(k){try{return JSON.parse(localStorage.getItem(k)||"{}")}catch(e){return {}}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 $("#menu").innerHTML=MENU.map(function(x){return "• "+x}).join("<br>");
@@ -118,7 +127,7 @@ function checks(ul,key,items,fmt){var st=store.get(key);ul.innerHTML=items.map(f
 checks($("#game"),"g",GAME,function(g){return '<span class="t">'+g[0]+"</span> "+g[1]});
 var sh=$("#shoplist");sh.innerHTML="";
 SHOP.forEach(function(c,ci){sh.insertAdjacentHTML("beforeend",'<h3 class="cat">'+c[0]+'</h3><ul class="l" id="s'+ci+'"></ul>');checks($("#s"+ci),"s"+ci+"_",c[1],function(x){return x})});
-$("#recipes").innerHTML=REC.map(function(r){return "<details><summary>"+r.n+"</summary><p class=\"meta\">"+r.m+"</p><p><a href=\"recipes/"+slug(r.n)+".html\">Open as its own recipe page</a></p><h4>Ingredients</h4><ul class=\"l\">"+r.i.map(function(x){return "<li><span>"+x+"</span></li>"}).join("")+"</ul><h4>Steps</h4><ol>"+r.s.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol></details>"}).join("")+'<p class="note">Also on the menu with no recipe: deviled eggs, store-bought sweet potato casserole, and Rhodes rolls (into the oven at 3:40 PM).</p>';
+$("#recipes").innerHTML=REC.map(function(r){return "<details><summary><span>"+IC[REC.indexOf(r)]+" "+r.n+"</span></summary><p class=\"meta\">"+r.m+"</p><p><a href=\"recipes/"+slug(r.n)+".html\">Open as its own recipe page</a></p><h4>Ingredients</h4><ul class=\"l\">"+r.i.map(function(x){return "<li><span>"+x+"</span></li>"}).join("")+"</ul><h4>Steps</h4><ol>"+r.s.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol></details>"}).join("")+'<p class="note">Also on the menu with no recipe: deviled eggs, store-bought sweet potato casserole, and Rhodes rolls (into the oven at 3:40 PM).</p>';
 document.addEventListener("change",function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k)return;var g=k.charAt(0)==="g"&&/^g\d+$/.test(k)?"g":k.split("_")[0];var o=store.get("chk_"+g);o[k]=e.target.checked;store.set("chk_"+g,o)});
 </script>
 <script>
@@ -131,5 +140,6 @@ var d=Math.ceil((new Date(2026,10,26)-new Date(new Date().setHours(0,0,0,0)))/86
 $("#count").textContent=d>0?d+(d===1?" day":" days")+" to Thanksgiving":d===0?"It’s Thanksgiving. Let’s go!":"Thanksgiving 2026 is in the books";
 })();
 </script>
+<footer>🍂 Happy Thanksgiving 🍂</footer>
 </body>
 </html>
